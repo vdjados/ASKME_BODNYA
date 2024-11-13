@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ question.title }} - Ask Me{% endblock %}
+
+{% block content %}
+    <div class="question-detail mb-4">
+        <h2>{{ question.title }}</h2>
+        <p>{{ question.body }}</p>
+        <p><small>Asked by: {{ question.user.username }} on {{ question.created_at|date:"F j, Y" }}</small></p>
+        <hr>
+        <h4>Answers</h4>
+        <div class="list-group">
+            {% for answer in answers %}
+                <div class="list-group-item">
+                    <p>{{ answer.body }}</p>
+                    <small>Answered by {{ answer.user.username }} on {{ answer.created_at|date:"F j, Y" }}</small>
+                </div>
+            {% empty %}
+                <p>No answers yet. Be the first to answer!</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
